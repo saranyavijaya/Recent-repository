@@ -1,0 +1,212 @@
+<html>
+<body>
+<center>
+<form>
+	<h3>First name:</h3>
+	<input type="text" name="fname" placeholder="Enter your first name" required></input><br>
+	<h3>Last name:</h3>
+	<input type="text" name="lname" placeholder="Enter your last name"></input><br>
+	<h3>Email Id:</h3>
+	<input type="email" name="email" placeholder="enter your email id"></input><br>
+	<h3>Password:</h3>
+	<input type="password" name="pwd" placeholder="enter your password"></input><br>
+	<h3>Gender</h3>
+	<input type="radio" id="m" name="gender" value="male">Male<br>
+	<input type="radio" id="f" name="gender" value="female">Female<br>
+	<input type="radio" id="o" name="gender" value="other">Other<br><br>
+	<input type="file"><br>
+	<h2>Permanent address</h2>
+	<h3>Enter the D.no&street name</h3>
+	<input type="text" id="Dno" name="bala" placeholder="Enter the D.no&street name" onkeyup="fo()"><br>
+	<h3>Enter area name</h3>
+	<input type="text" id="ar" name="bala1" placeholder="Enter area name" disabled onchange="fon()"></input><br>
+	<h3>Enter the pincode</h3>
+	<input type="text" id="pin" name="bala2" placeholder="Enter the pincode" disabled></input><br>
+	<input type="checkbox" id="i2" name="agree1" value="i1" onclick="f1(this.form)">same as permanent address</input><br>
+	<h2>Communication address</h2>
+	<h3>Enter the D.no&street name</h3>
+	<input type="text" id="Dno1" name="bala4" placeholder="Enter the D.no&street name" onchange="ff()" ></input><br>
+	<h3>Enter area name</h3>
+	<input type="text" id="ar1" name="bala5" placeholder="Enter area name"  onchange="fff()"></input><br>
+	<h3>Enter the pincode</h3>
+	<input type="text" id="pin1" name="bala6" placeholder="Enter the pincode" ></input><br>
+	<h3>Phone no:</h3>
+	<input type="text" id="ph" name="pno" placeholder="Enter ur mobile no" maxlength="10"><br><br>
+	<input type="button" id="b11" name="b12" value="Generate an OTP" onclick="p()"><br>
+	<h3>OTP:</h3>
+	<input type="text" id="ot" name="tp" disabled><br><br>
+	<input type="button" id="b111" name="b122" value="verify" onclick="pp()"><br><br>
+	<input type="checkbox" id="q" name="agree" value="t" onchange="f10()">I agree upon terms and conditions<br><br>
+	<input type="submit" id="s" value="submit" disabled ></input>
+</form>
+<script>
+var co=0;
+var coo=0;
+var ra;
+function fo()
+{
+var a=document.getElementById("Dno").value;
+if(a.length>0)
+{
+document.getElementById("ar").disabled=false;
+}
+else
+{
+document.getElementById("ar").disabled=true;
+}
+}
+function fon()
+{
+var b=document.getElementById("ar").value;
+if(b.length>0)
+{
+document.getElementById("pin").disabled=false;
+}
+else
+{
+document.getElementById("pin").disabled=true;
+}
+}
+function f1(f) 
+{
+  if(f.agree1.checked == true) 
+  {
+    f.bala4.value = f.bala.value;
+    f.bala5.value = f.bala1.value;
+	f.bala6.value = f.bala2.value;
+	document.getElementById("Dno1").disabled=true;
+	document.getElementById("ar1").disabled=true;
+	document.getElementById("pin1").disabled=true;
+  }
+  else
+  {
+	document.getElementById("Dno1").disabled=false;
+	k=document.getElementById("Dno1").value;
+	k=0;
+	h=document.getElementById("ar1").value;
+	h=0;
+	if(k.length>0)
+	{
+		document.getElementById("ar1").disabled=false;
+		if(h.length>0)
+	   {
+			document.getElementById("pin1").disabled=false;
+	   }
+	   else
+	   {
+			document.getElementById("pin1").disabled=true;
+		}
+	}
+	else
+	{
+		document.getElementById("ar1").disabled=true;
+	}
+	}
+	
+	
+	
+   }
+
+function ff()
+
+{
+		document.getElementById("Dno1").disabled=false;
+		document.getElementById("ar1").disabled=true;
+		document.getElementById("pin1").disabled=true;
+		d=document.getElementById("Dno1").value;
+		if(d.length>0)
+		{
+			document.getElementById("ar1").disabled=false;
+			
+		}
+		else
+		{
+			document.getElementById("ar1").disabled=true;
+		}
+		
+
+}
+function fff()
+{
+	e=document.getElementById("ar1").value;
+	if(e.length>0)
+			{
+				document.getElementById("pin1").disabled=false;
+			}
+	else
+			{
+				document.getElementById("pin1").disabled=true;
+			}
+}
+function p()
+{
+	var p1=document.getElementById("ph").value;
+	if(isNaN(p1)==false && p1.length==10)
+	
+		{
+			if(coo<3)
+			
+			{
+				ra=Math.floor(Math.random()*10000+1000);
+				alert("An OTP Will be send to "+p1.substring(0,2)+"******"+p1.substring(8,10));
+				alert("The OTP is "+ra);
+				document.getElementById("ot").disabled=false;
+				document.getElementById("b111").disabled=false;
+				coo=coo+1;
+			}
+			else
+			{
+				alert("please visit the branch");
+				document.getElementById("ot").disabled=true;
+				document.getElementById("b11").disabled=true;
+				document.getElementById("b111").disabled=true;
+			}
+		}
+	else
+	{
+		alert("sorry u enter invalid number");
+	}
+	
+}
+function pp()
+{
+
+	var p2=document.getElementById("ot").value;
+	var p4=document.getElementById("b111").value;
+	var p3=document.getElementById("ph").value;
+	if(co<3)
+	{
+		if(p2==ra)
+		{
+			alert("The mobile number"+p3+"is registered");
+		}
+		else{
+				alert("please enter the corrct OTP");
+				co=co+1;
+			}
+	}
+	if(co==3)
+	{
+		document.getElementById("ot").disabled=true;
+		document.getElementById("b111").disabled=true;
+		alert("please generate the OTP one more time");
+		co=0;
+	}
+
+}
+function f10()
+{
+var c=document.getElementsByName("agree");
+		if(c[0].checked)
+		{
+			document.getElementById("s").disabled=false;
+		}
+		else
+		{
+			document.getElementById("s").disabled=true;
+		}
+	
+}
+</script>
+</body>
+</html>
